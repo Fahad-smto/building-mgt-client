@@ -1,48 +1,97 @@
-
+import { useContext } from "react";
+import { Link, NavLink } from "react-router";
+// import { AuthContext } from "../provider/AuthProvider";
+import { IoMdLogOut } from "react-icons/io";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
+    // const { user, logOut } = useContext( );
+
+    // const handleLogout = () => {
+    //     logOut()
+    //         .then(() => toast.success("Logged out successfully"))
+    //         .catch(() => toast.error("Something went wrong"));
+    // };
+
     return (
-        <div className="navbar bg-base-100 shadow-sm">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
-                    </ul>
-                </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
+        <nav className="bg-white border-b border-gray-200 shadow-md sticky top-0 z-50">
+            <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+                {/* Logo & Brand */}
+                <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-gray-800">
+                    <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full" />
+                    <span className="tracking-wide italic">
+                        My<span className="text-orange-500">Apartment</span>
+                    </span>
+                </Link>
+
+                {/* Menu */}
+                <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700">
                     <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-orange-600 border-b-2 border-orange-500 pb-1"
+                                    : "hover:text-orange-500 transition"
+                            }
+                        >
+                            Home
+                        </NavLink>
                     </li>
-                    <li><a>Item 3</a></li>
+                    <li>
+                        <NavLink
+                            to="/apartment"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-orange-600 border-b-2 border-orange-500 pb-1"
+                                    : "hover:text-orange-500 transition"
+                            }
+                        >
+                            Apartment
+                        </NavLink>
+                    </li>
                 </ul>
+
+                {/* Right Side: Login or Profile */}
+                <div className="flex items-center gap-3">
+                    {/* {user ? (
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full ring ring-orange-200 hover:ring-orange-400 transition">
+                                    <img src={user.photoURL || "/user.jpg"} alt="User" />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-white rounded-box w-52"
+                            >
+                                <li className="text-center font-semibold border-b pb-2 cursor-default">
+                                    {user.displayName || "User"}
+                                </li>
+                                <li>
+                                    <Link to="/dashboard">Dashboard</Link>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="flex items-center gap-2 text-red-500"
+                                    >
+                                        <IoMdLogOut size={18} /> Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="btn btn-sm bg-orange-500 text-white hover:bg-orange-400 transition"
+                        >
+                            Log in
+                        </Link>
+                    )} */}
+                </div>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
-            </div>
-        </div>
+        </nav>
     );
 };
 
