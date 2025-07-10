@@ -20,9 +20,16 @@ const NavBar = () => {
             <div className="container px-6 py-3 mx-auto md:flex md:items-center md:justify-between">
                 {/* Logo + Mobile toggle */}
                 <div className="flex items-center justify-between">
-                    <Link to="/">
-                        <img className="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="Logo" />
+                    <Link to="/" className="flex items-center gap-2">
+                        <img className="w-auto h-7 sm:h-9 rounded-full" src="/logo.png" alt="Logo" />
+                        <span className="text-xl italic sm:text-2xl font-semibold bg-gradient-to-r  bg-linear-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+                            BuildBuddy
+                        </span>
                     </Link>
+
+
+
+
                     {/* Mobile menu button */}
                     <div className="flex md:hidden">
                         <button
@@ -37,7 +44,7 @@ const NavBar = () => {
 
                 {/* Menu items */}
                 <div
-                    className={`absolute md:relative z-20 w-full md:w-auto bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out md:flex md:items-center md:opacity-100 md:translate-x-0 ${isOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full md:opacity-100"
+                    className={`absolute md:relative z-20 w-[300px] md:w-auto bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out md:flex md:items-center md:opacity-100 md:translate-x-0 ${isOpen ? "opacity-100 translate-x-30" : "opacity-0 -translate-x-full md:opacity-100"
                         }`}
                 >
                     <div className="flex flex-col md:flex-row md:items-center md:gap-6 px-4 md:px-0">
