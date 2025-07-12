@@ -86,7 +86,7 @@ const NavBar = () => {
                         </NavLink>
 
                         {/* Search bar */}
-                        <div className="relative mt-3 md:mt-0 md:ml-6 w-full md:w-[220px]">
+                        <div className="relative mt-3 md:mt-0 md:ml-6 w-full md:w-[200px]">
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <svg className="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
                                     <path

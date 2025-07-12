@@ -6,8 +6,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-// If using public folder, no need to import. Use direct URLs instead.
+ 
 const slides = [
     {
         image: '/1.jpg',
@@ -45,7 +44,7 @@ const Banner = () => {
                 slidesPerView={1}
                 loop={true}
                 autoplay={{
-                    delay: 2000,
+                    delay: 3000,
                     disableOnInteraction: false,
                 }}
                 pagination={{ clickable: true }}
