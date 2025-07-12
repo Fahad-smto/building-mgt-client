@@ -5,6 +5,7 @@ import Loading from "../Components/Loading";
 import Apartment from "../Pages/Apartment";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
+import About from "../Pages/About";
 
 
 export const router = createBrowserRouter([
@@ -32,7 +33,12 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
-            }
+            },
+            {
+                path: '/about',
+                element: <About></About>,
+            },
+
         ]
 
     }
