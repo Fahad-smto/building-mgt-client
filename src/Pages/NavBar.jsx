@@ -22,7 +22,7 @@ const NavBar = () => {
                 <div className="flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-2">
                         <img className="w-auto h-7 sm:h-9 rounded-full" src="/logo.png" alt="Logo" />
-                        <span className="text-xl italic sm:text-2xl font-semibold bg-gradient-to-r  bg-linear-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+                        <span className="text-xl  sm:text-2xl font-semibold bg-gradient-to-r  bg-linear-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
                             BuildBuddy
                         </span>
                     </Link>
