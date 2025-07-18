@@ -13,6 +13,10 @@ import Announcements from "../Mainlayouts/Announcements";
 import Welcome from "../dashboards/Welcome";
 import MakePayment from "../dashboards/Member/MakePayment";
 import PaymentHistory from "../dashboards/Member/PaymentHistory";
+import ManageMembers from "../dashboards/Member/ManageMembers";
+import MakeAnnouncement from "../dashboards/Member/MakeAnnouncement";
+import AgreementRequests from "../dashboards/Member/AgreementRequests";
+import ManageCoupons from "../dashboards/Member/ManageCoupons";
 
 
 export const router = createBrowserRouter([
@@ -59,23 +63,41 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Welcome></Welcome>
-            }, 
-            {
-             path:'my_profile',
-             element:<MyProfile></MyProfile>
             },
             {
-             path:'announcements',
-             element:<Announcements></Announcements>
+                path: 'my_profile',
+                element: <MyProfile></MyProfile>
             },
             {
-                path:'make_payment',
-                element:<MakePayment></MakePayment>
+                path: 'announcements',
+                element: <Announcements></Announcements>
             },
             {
-                path:'payment_history',
-                element:<PaymentHistory></PaymentHistory>
+                path: 'make_payment',
+                element: <MakePayment></MakePayment>
+            },
+            {
+                path: 'payment_history',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: 'manage_members',
+                element: <ManageMembers />
+            },
+            {
+                path: 'make_announcement',
+                element: <MakeAnnouncement />
+            },
+            {
+                path: 'agreement_requests',
+                element: <AgreementRequests />
+            },
+            {
+                path: 'manage_coupons',
+                element: <ManageCoupons />
             }
+
+
         ]
     }
 

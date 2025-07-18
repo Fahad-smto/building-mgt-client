@@ -1,4 +1,4 @@
-import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt } from "react-icons/fa";
+import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt, FaUsers, FaFileSignature, FaTags } from "react-icons/fa";
 import { NavLink, Outlet } from 'react-router';
 
 const DashBoards = () => {
@@ -95,6 +95,51 @@ const DashBoards = () => {
                                 }
                             >
                                 <FaReceipt className="mr-2" /> Payment History
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="manage_members"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-blue-600 font-semibold flex items-center"
+                                        : "flex items-center"
+                                }
+                            >
+                                <FaUsers className="mr-2" /> Manage Members
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="make_announcement"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-blue-600 font-semibold flex items-center"
+                                        : "flex items-center"
+                                }
+                            >
+                                <FaBullhorn className="mr-2" /> Make Announcement
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="agreement_requests"
+                                className={({ isActive }) =>
+                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                }
+                            >
+                                <FaFileSignature className="mr-2" /> Agreement Requests
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="manage_coupons"
+                                className={({ isActive }) =>
+                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                }
+                            >
+                                <FaTags className="mr-2" /> Manage Coupons
                             </NavLink>
                         </li>
 
