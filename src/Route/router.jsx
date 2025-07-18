@@ -11,6 +11,8 @@ import DashBoards from "../dashboards/DashBoards";
 import MyProfile from "../Mainlayouts/MyProfile";
 import Announcements from "../Mainlayouts/Announcements";
 import Welcome from "../dashboards/Welcome";
+import MakePayment from "../dashboards/Member/MakePayment";
+import PaymentHistory from "../dashboards/Member/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -65,6 +67,14 @@ export const router = createBrowserRouter([
             {
              path:'announcements',
              element:<Announcements></Announcements>
+            },
+            {
+                path:'make_payment',
+                element:<MakePayment></MakePayment>
+            },
+            {
+                path:'payment_history',
+                element:<PaymentHistory></PaymentHistory>
             }
         ]
     }

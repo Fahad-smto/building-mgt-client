@@ -1,5 +1,5 @@
-import { FaUserCircle, FaBullhorn,FaHome  } from "react-icons/fa";
-import { Link, Outlet } from 'react-router';
+import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt } from "react-icons/fa";
+import { NavLink, Outlet } from 'react-router';
 
 const DashBoards = () => {
     return (
@@ -38,20 +38,66 @@ const DashBoards = () => {
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                         {/* Sidebar content here */}
                         <li>
-                            <Link to="/">
-                                <FaHome  className="mr-2" /> Home
-                            </Link>
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                }
+                            >
+                                <FaHome className="mr-2" /> Home
+                            </NavLink>
                         </li>
+
                         <li>
-                            <Link to="my_profile">
+                            <NavLink
+                                to="my_profile"
+                                className={({ isActive }) =>
+                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                }
+                            >
                                 <FaUserCircle className="mr-2" /> My Profile
-                            </Link>
+                            </NavLink>
                         </li>
+
                         <li>
-                            <Link to="announcements">
+                            <NavLink
+                                to="announcements"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-blue-600 font-semibold flex items-center"
+                                        : "flex items-center"
+                                }
+                            >
                                 <FaBullhorn className="mr-2" /> Announcements
-                            </Link>
+                            </NavLink>
                         </li>
+
+                        <li>
+                            <NavLink
+                                to="make_payment"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-blue-600 font-semibold flex items-center"
+                                        : "flex items-center"
+                                }
+                            >
+                                <FaCreditCard className="mr-2" /> Make Payment
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="payment_history"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-blue-600 font-semibold flex items-center"
+                                        : "flex items-center"
+                                }
+                            >
+                                <FaReceipt className="mr-2" /> Payment History
+                            </NavLink>
+                        </li>
+
                     </ul>
                 </div>
             </div>
