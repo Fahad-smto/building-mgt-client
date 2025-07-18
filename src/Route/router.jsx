@@ -7,6 +7,8 @@ import Register from "../Pages/Register";
 import Login from "../Pages/Login";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
+import DashBoards from "../dashboards/DashBoards";
+import MyProfile from "../Mainlayouts/MyProfile";
 
 
 export const router = createBrowserRouter([
@@ -41,10 +43,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/contact',
-                element:<Contact></Contact>,
+                element: <Contact></Contact>,
             },
 
         ]
-
+    },
+    {
+        path: '/dashboard',
+        element: <DashBoards></DashBoards>,
+        children: [
+            {
+                path: 'my_profile',
+                element: <MyProfile></MyProfile>
+            },
+        ]
     }
+
 ]);

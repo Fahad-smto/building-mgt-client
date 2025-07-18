@@ -126,7 +126,7 @@ const NavBar = () => {
                                             {user.displayName || "User"}
                                         </li>
                                         <li>
-                                            <Link to="/dashboard">Dashboard</Link>
+                                            <Link className="text-white" to="/dashboard">Dashboard</Link>
                                         </li>
                                         <li>
                                             <button onClick={handleLogout} className="flex items-center gap-2 text-red-500">
