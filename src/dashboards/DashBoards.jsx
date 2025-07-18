@@ -1,4 +1,5 @@
-import React from 'react';
+import { FaUserCircle, FaBullhorn,FaHome  } from "react-icons/fa";
+import { Link, Outlet } from 'react-router';
 
 const DashBoards = () => {
     return (
@@ -25,10 +26,10 @@ const DashBoards = () => {
                                 </svg>
                             </label>
                         </div>
-                        
+
                     </div>
                     {/* Page content here */}
-                    Content
+                    <Outlet></Outlet>
                     {/* Page content here */}
 
                 </div>
@@ -36,8 +37,21 @@ const DashBoards = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li>
+                            <Link to="/">
+                                <FaHome  className="mr-2" /> Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="my_profile">
+                                <FaUserCircle className="mr-2" /> My Profile
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="announcements">
+                                <FaBullhorn className="mr-2" /> Announcements
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

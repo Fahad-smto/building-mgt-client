@@ -9,6 +9,8 @@ import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import DashBoards from "../dashboards/DashBoards";
 import MyProfile from "../Mainlayouts/MyProfile";
+import Announcements from "../Mainlayouts/Announcements";
+import Welcome from "../dashboards/Welcome";
 
 
 export const router = createBrowserRouter([
@@ -53,9 +55,17 @@ export const router = createBrowserRouter([
         element: <DashBoards></DashBoards>,
         children: [
             {
-                path: 'my_profile',
-                element: <MyProfile></MyProfile>
+                path: '/dashboard',
+                element: <Welcome></Welcome>
+            }, 
+            {
+             path:'my_profile',
+             element:<MyProfile></MyProfile>
             },
+            {
+             path:'announcements',
+             element:<Announcements></Announcements>
+            }
         ]
     }
 
