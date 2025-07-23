@@ -1,100 +1,175 @@
-import { useState } from "react";
-import { FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import axiosSecure from "../../hooks/axios.config";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { FaMoneyBillWave } from "react-icons/fa";
 
 const MakePayment = () => {
-  const [form, setForm] = useState({
-    cardNumber: "",
-    name: "",
-    expiry: "",
-    cvv: "",
-    amount: "",
+  const { user } = useContext(AuthContext);
+  const [month, setMonth] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [finalRent, setFinalRent] = useState(null);
+
+  // 1. Fetch user data (to get rent info and role)
+  const { data: userData = {}, isLoading } = useQuery({
+    queryKey: ["userInfo", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handlePayment = (e) => {
-    e.preventDefault();
-    if (
-      !form.cardNumber ||
-      !form.name ||
-      !form.expiry ||
-      !form.cvv ||
-      !form.amount
-    ) {
-      toast.error("Please fill in all fields");
-      return;
+  const handleApplyCoupon = async () => {
+    if (!couponCode) return toast.error("Please enter a coupon code");
+    try {
+      const res = await axiosSecure.get(`/coupons?code=${couponCode}`);
+      if (res.data) {
+        const percent = res.data.discount;
+        const reduced = userData.rent - (userData.rent * percent) / 100;
+        setDiscount(percent);
+        setFinalRent(Math.round(reduced));
+        toast.success(`Coupon applied! ${percent}% off`);
+      } else {
+        toast.error("Invalid coupon");
+        setDiscount(0);
+        setFinalRent(null);
+      }
+    } catch {
+      toast.error("Error applying coupon");
     }
-
-    // Simulate payment success
-    toast.success("Payment successful!");
-    setForm({
-      cardNumber: "",
-      name: "",
-      expiry: "",
-      cvv: "",
-      amount: "",
-    });
   };
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const paymentData = {
+        email: userData.email,
+        floor: userData.floor,
+        block: userData.block,
+        apartmentNo: userData.apartmentNo,
+        rent: userData.rent,
+        discount,
+        finalAmount: finalRent || userData.rent,
+        month,
+        date: new Date(),
+      };
+      const res = await axiosSecure.post("/payments", paymentData);
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("Payment submitted!");
+      setCouponCode("");
+      setDiscount(0);
+      setFinalRent(null);
+      setMonth("");
+    },
+    onError: () => toast.error("Failed to submit payment"),
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!month) return toast.error("Select a month");
+    mutation.mutate();
+  };
+
+  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+
+  // 2. Show nothing if user is not a member
+  if (userData?.role !== "member") {
+    console.log(userData);
+    return (
+      <div className="text-center mt-20 text-red-500 font-semibold">
+        Access denied.
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
-      <h2 className="text-2xl font-bold text-center text-blue-600 mb-6 flex items-center justify-center gap-2">
-        <FaMoneyCheckAlt /> Make a Payment
+    <div className="max-w-xl mx-auto bg-white shadow-md rounded p-6 mt-10">
+      <h2 className="text-2xl font-semibold flex gap-2 items-center text-blue-600 mb-6">
+        <FaMoneyBillWave /> Make Rent Payment
       </h2>
-      <form onSubmit={handlePayment} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          name="cardNumber"
-          placeholder="Card Number"
-          maxLength={16}
-          value={form.cardNumber}
-          onChange={handleChange}
+          value={userData.name}
+          readOnly
           className="w-full px-4 py-2 border rounded"
         />
         <input
           type="text"
-          name="name"
-          placeholder="Card Holder Name"
-          value={form.name}
-          onChange={handleChange}
+          value={userData.email}
+          readOnly
           className="w-full px-4 py-2 border rounded"
         />
-        <div className="flex gap-4">
+        <div className="grid grid-cols-2 gap-4">
           <input
             type="text"
-            name="expiry"
-            placeholder="MM/YY"
-            maxLength={5}
-            value={form.expiry}
-            onChange={handleChange}
-            className="w-1/2 px-4 py-2 border rounded"
+            value={`Floor: ${userData.floor}`}
+            readOnly
+            className="px-4 py-2 border rounded"
           />
           <input
-            type="password"
-            name="cvv"
-            placeholder="CVV"
-            maxLength={3}
-            value={form.cvv}
-            onChange={handleChange}
-            className="w-1/2 px-4 py-2 border rounded"
+            type="text"
+            value={`Block: ${userData.block}`}
+            readOnly
+            className="px-4 py-2 border rounded"
           />
         </div>
         <input
-          type="number"
-          name="amount"
-          placeholder="Amount (৳)"
-          value={form.amount}
-          onChange={handleChange}
+          type="text"
+          value={`Apartment: ${userData.apartmentNo}`}
+          readOnly
           className="w-full px-4 py-2 border rounded"
         />
+        <input
+          type="text"
+          value={`Rent: ৳${finalRent || userData.rent}`}
+          readOnly
+          className="w-full px-4 py-2 border rounded text-green-600 font-semibold"
+        />
+
+        <select
+          className="w-full px-4 py-2 border rounded"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+        >
+          <option value="">Select Rent Month</option>
+          {[
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December",
+          ].map((m) => (
+            <option key={m} value={m}>
+              {m}
+            </option>
+          ))}
+        </select>
+
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Enter Coupon Code"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            className="flex-1 px-4 py-2 border rounded"
+          />
+          <button
+            type="button"
+            onClick={handleApplyCoupon}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+          >
+            Apply
+          </button>
+        </div>
+
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded flex items-center justify-center gap-2"
+          disabled={mutation.isPending}
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
         >
-          <FaCreditCard /> Pay Now
+          {mutation.isPending ? "Processing..." : "Pay Now"}
         </button>
       </form>
     </div>

@@ -52,6 +52,7 @@ const Apartment = () => {
       apartmentNo: apartment.apartmentNo,
       rent: apartment.rent,
       status: "pending",
+      
     };
 
     try {
