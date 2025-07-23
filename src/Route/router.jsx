@@ -17,6 +17,7 @@ import ManageMembers from "../dashboards/Member/ManageMembers";
 import MakeAnnouncement from "../dashboards/Member/MakeAnnouncement";
 import AgreementRequests from "../dashboards/Member/AgreementRequests";
 import ManageCoupons from "../dashboards/Member/ManageCoupons";
+import MakeAdmin from "../dashboards/Admin/MakeAdmin";
 
 
 export const router = createBrowserRouter([
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manage_coupons',
                 element: <ManageCoupons />
+            },
+            {
+                path:'make_admin',
+                element:<MakeAdmin></MakeAdmin>
             }
 
 

@@ -26,7 +26,7 @@ const AgreementRequests = () => {
 
       // Step 2: Store user with role (member or user)
       const role = action === "accept" ? "member" : "user";
-      await axiosSecure.post("/users", {
+      await axiosSecure.post("/users/agreements", {
         ...data,
         role,
       });

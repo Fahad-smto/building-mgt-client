@@ -1,4 +1,4 @@
-import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt, FaUsers, FaFileSignature, FaTags } from "react-icons/fa";
+import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt, FaUsers, FaFileSignature, FaTags, FaUserShield } from "react-icons/fa";
 import { NavLink, Outlet } from 'react-router';
 
 const DashBoards = () => {
@@ -142,6 +142,18 @@ const DashBoards = () => {
                                 <FaTags className="mr-2" /> Manage Coupons
                             </NavLink>
                         </li>
+
+                        <li>
+                            <NavLink
+                                to="/dashboard/make_admin"
+                                className={({ isActive }) =>
+                                    isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+                                }
+                            >
+                                <FaUserShield className="inline-block mr-2" /> Make Admin
+                            </NavLink>
+                        </li>
+
 
                     </ul>
                 </div>
