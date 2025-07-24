@@ -1,4 +1,4 @@
-import {useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useUserRole from "../hooks/useUserRole";
 import Loading from "../Components/Loading";
@@ -6,7 +6,7 @@ import { Navigate } from "react-router";
 
  
 
-const AdminRoute = ({children}) => {
+const MemberRoute = ({children}) => {
 
     const {user,loading} = useContext(AuthContext)
     const {role,roleLoading} = useUserRole();
@@ -15,11 +15,11 @@ const AdminRoute = ({children}) => {
         return <Loading></Loading>
     }
 
-    if(!user || role !=='admin'){
+    if(!user || role !=='member'){
         return <Navigate state={{from:location.pathname}}to='/forbidden'></Navigate>
     }
 
     return (children);
 };
 
-export default AdminRoute;
+export default MemberRoute;

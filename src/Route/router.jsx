@@ -21,6 +21,8 @@ import MakeAdmin from "../dashboards/Admin/MakeAdmin";
 import PrivateRoute from "../Components/PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import Forbidden from "../Components/Forbidden";
+import MemberRoute from "./MemberRoute";
+import ErrorPage from "../Components/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -28,7 +30,7 @@ export const router = createBrowserRouter([
 
         path: '/',
         element: <MainLayouts></MainLayouts>,
-        errorElement: <Error></Error>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -90,14 +92,17 @@ export const router = createBrowserRouter([
             {
                 path: 'make_payment',
                 element:
-                    <MakePayment></MakePayment>
+                    <MemberRoute>
+                        <MakePayment></MakePayment>
+                    </MemberRoute>
 
             },
             {
                 path: 'payment_history',
                 element:
-                    <PaymentHistory></PaymentHistory>
-
+                    <MemberRoute>
+                        <PaymentHistory></PaymentHistory>
+                    </MemberRoute>
             },
             {
                 path: 'manage_members',
@@ -110,9 +115,9 @@ export const router = createBrowserRouter([
             {
                 path: 'make_announcement',
                 element:
-                   <AdminRoute>
-                     <MakeAnnouncement />
-                   </AdminRoute>
+                    <AdminRoute>
+                        <MakeAnnouncement />
+                    </AdminRoute>
 
             },
             {
