@@ -18,6 +18,7 @@ import MakeAnnouncement from "../dashboards/Member/MakeAnnouncement";
 import AgreementRequests from "../dashboards/Member/AgreementRequests";
 import ManageCoupons from "../dashboards/Member/ManageCoupons";
 import MakeAdmin from "../dashboards/Admin/MakeAdmin";
+import PrivateRoute from "../Components/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -34,8 +35,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'apartment',
-                Component: Apartment,
+                element:<Apartment></Apartment>,
                 hydrateFallbackElement: <Loading></Loading>
+
             },
             {
                 path: '/login',
@@ -67,39 +69,57 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my_profile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoute>
+                    <MyProfile></MyProfile>
+                </PrivateRoute>
             },
             {
                 path: 'announcements',
-                element: <Announcements></Announcements>
+                element: <PrivateRoute>
+                    <Announcements></Announcements>
+                </PrivateRoute>
             },
             {
                 path: 'make_payment',
-                element: <MakePayment></MakePayment>
+                element: <PrivateRoute>
+                    <MakePayment></MakePayment>
+                </PrivateRoute>
             },
             {
                 path: 'payment_history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRoute>
+                    <PaymentHistory></PaymentHistory>
+                </PrivateRoute>
             },
             {
                 path: 'manage_members',
-                element: <ManageMembers />
+                element: <PrivateRoute>
+                    <ManageMembers />
+                </PrivateRoute>
             },
             {
                 path: 'make_announcement',
-                element: <MakeAnnouncement />
+                element: <PrivateRoute>
+                    <MakeAnnouncement />
+                </PrivateRoute>
             },
             {
                 path: 'agreement_requests',
-                element: <AgreementRequests />
+                element: <PrivateRoute>
+                    <AgreementRequests />
+                </PrivateRoute>
             },
             {
                 path: 'manage_coupons',
-                element: <ManageCoupons />
+                element: <PrivateRoute>
+                    <ManageCoupons />
+                </PrivateRoute>
             },
             {
-                path:'make_admin',
-                element:<MakeAdmin></MakeAdmin>
+                path: 'make_admin',
+                element: <PrivateRoute>
+                    <MakeAdmin></MakeAdmin>
+                </PrivateRoute>
             }
 
 

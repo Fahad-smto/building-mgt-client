@@ -1,15 +1,21 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosSecure from "../../hooks/axios.config";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useContext } from "react";
 
 const AgreementRequests = () => {
   const queryClient = useQueryClient();
 
+
+  const { user, } =  useContext(AuthContext);
+
   // Get pending agreement requests
   const { data: requests = [], isLoading } = useQuery({
     queryKey: ["agreementRequests"],
+    enabled:!!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get("/agreements?status=pending");
+     const res = await axiosSecure.get("/agreements?status=pending");
       return res.data;
     },
   });
@@ -26,7 +32,7 @@ const AgreementRequests = () => {
 
       // Step 2: Store user with role (member or user)
       const role = action === "accept" ? "member" : "user";
-      await axiosSecure.post("/users/agreements", {
+      await axiosSecure.post("/users", {
         ...data,
         role,
       });

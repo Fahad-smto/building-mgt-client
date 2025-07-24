@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../hooks/axios.config";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+
 
 const MakeAdmin = () => {
     const [search, setSearch] = useState("");
@@ -35,11 +37,37 @@ const MakeAdmin = () => {
     };
 
     const handleMakeAdmin = (user) => {
-        mutation.mutate({ email: user.email, role: "admin" });
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Make ${user.name} an admin?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, make admin"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                mutation.mutate({ email: user.email, role: "admin" });
+                Swal.fire("Updated!", `${user.name} is now an admin.`, "success");
+            }
+        });
     };
 
     const handleRemoveAdmin = (user) => {
-        mutation.mutate({ email: user.email, role: "user" });
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Remove admin role from ${user.name}?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                mutation.mutate({ email: user.email, role: "user" });
+                Swal.fire("Updated!", `${user.name} is no longer an admin.`, "success");
+            }
+        });
     };
 
     return (

@@ -1,7 +1,12 @@
 import { FaUserCircle, FaBullhorn, FaHome, FaCreditCard, FaReceipt, FaUsers, FaFileSignature, FaTags, FaUserShield } from "react-icons/fa";
 import { NavLink, Outlet } from 'react-router';
+import useUserRole from "../hooks/useUserRole";
 
 const DashBoards = () => {
+
+    const {role,roleLoading} = useUserRole();
+    console.log(role ,roleLoading);
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
