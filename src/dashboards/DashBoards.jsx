@@ -4,10 +4,19 @@ import useUserRole from "../hooks/useUserRole";
 
 const DashBoards = () => {
 
-    const {role,roleLoading} = useUserRole();
-    console.log(role ,roleLoading);
+    const { role, roleLoading } = useUserRole();
+    console.log(role, roleLoading);
+
+    if(roleLoading){
+         return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-blue-600"></span>
+            </div>
+        );
+    }
 
     return (
+
         <div>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -77,7 +86,12 @@ const DashBoards = () => {
                             </NavLink>
                         </li>
 
-                        <li>
+                        {/* member role */}
+
+                   {
+                    !roleLoading && role ==='member' &&
+                    <> 
+                         <li>
                             <NavLink
                                 to="make_payment"
                                 className={({ isActive }) =>
@@ -102,62 +116,75 @@ const DashBoards = () => {
                                 <FaReceipt className="mr-2" /> Payment History
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                to="manage_members"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? "text-blue-600 font-semibold flex items-center"
-                                        : "flex items-center"
-                                }
-                            >
-                                <FaUsers className="mr-2" /> Manage Members
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="make_announcement"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? "text-blue-600 font-semibold flex items-center"
-                                        : "flex items-center"
-                                }
-                            >
-                                <FaBullhorn className="mr-2" /> Make Announcement
-                            </NavLink>
-                        </li>
 
-                        <li>
-                            <NavLink
-                                to="agreement_requests"
-                                className={({ isActive }) =>
-                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
-                                }
-                            >
-                                <FaFileSignature className="mr-2" /> Agreement Requests
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="manage_coupons"
-                                className={({ isActive }) =>
-                                    isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
-                                }
-                            >
-                                <FaTags className="mr-2" /> Manage Coupons
-                            </NavLink>
-                        </li>
+                    </>
+                   }
 
-                        <li>
-                            <NavLink
-                                to="/dashboard/make_admin"
-                                className={({ isActive }) =>
-                                    isActive ? "text-blue-600 font-semibold" : "text-gray-700"
-                                }
-                            >
-                                <FaUserShield className="inline-block mr-2" /> Make Admin
-                            </NavLink>
-                        </li>
+                        {/* admin role */}
+
+                        { !roleLoading && role==='admin' &&
+                            <>
+
+                                <li>
+                                    <NavLink
+                                        to="manage_members"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "text-blue-600 font-semibold flex items-center"
+                                                : "flex items-center"
+                                        }
+                                    >
+                                        <FaUsers className="mr-2" /> Manage Members
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="make_announcement"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "text-blue-600 font-semibold flex items-center"
+                                                : "flex items-center"
+                                        }
+                                    >
+                                        <FaBullhorn className="mr-2" /> Make Announcement
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="agreement_requests"
+                                        className={({ isActive }) =>
+                                            isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                        }
+                                    >
+                                        <FaFileSignature className="mr-2" /> Agreement Requests
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="manage_coupons"
+                                        className={({ isActive }) =>
+                                            isActive ? "text-blue-600 font-semibold flex items-center" : "flex items-center"
+                                        }
+                                    >
+                                        <FaTags className="mr-2" /> Manage Coupons
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/make_admin"
+                                        className={({ isActive }) =>
+                                            isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+                                        }
+                                    >
+                                        <FaUserShield className="inline-block mr-2" /> Make Admin
+                                    </NavLink>
+                                </li>
+
+
+                            </>
+                        }
 
 
                     </ul>
