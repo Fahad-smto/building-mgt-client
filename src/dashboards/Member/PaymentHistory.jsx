@@ -1,64 +1,59 @@
-import { FaReceipt } from "react-icons/fa";
-
-const dummyHistory = [
-  {
-    id: "TXN001",
-    date: "2025-07-01",
-    amount: 15000,
-    method: "Card",
-    status: "Successful",
-  },
-  {
-    id: "TXN002",
-    date: "2025-06-01",
-    amount: 15000,
-    method: "Card",
-    status: "Successful",
-  },
-  {
-    id: "TXN003",
-    date: "2025-05-01",
-    amount: 15000,
-    method: "Card",
-    status: "Successful",
-  },
-];
+import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axiosSecure from "../../hooks/axios.config";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const PaymentHistory = () => {
+  const { user } = useContext(AuthContext);
+
+  const { data: payments = [], isLoading } = useQuery({
+    queryKey: ["payments", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payments?email=${user.email}`);
+      return res.data;
+    },
+    enabled: !!user?.email, // Wait for user to be loaded
+  });
+
+  if (isLoading) return <p>Loading payment history...</p>;
+
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
-      <h2 className="text-2xl font-bold text-blue-600 mb-6 flex items-center gap-2">
-        <FaReceipt /> Payment History
-      </h2>
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4 text-blue-600">Payment History</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border">
+        <table className="table w-full border rounded shadow">
           <thead className="bg-gray-100">
-            <tr className="text-left">
-              <th className="px-4 py-2 border">#</th>
-              <th className="px-4 py-2 border">Transaction ID</th>
-              <th className="px-4 py-2 border">Date</th>
-              <th className="px-4 py-2 border">Amount (৳)</th>
-              <th className="px-4 py-2 border">Method</th>
-              <th className="px-4 py-2 border">Status</th>
+            <tr>
+              <th>#</th>
+              <th>Month</th>
+              <th>Apartment</th>
+              <th>Rent</th>
+              <th>Discount</th>
+              <th>Final Amount</th>
+              <th>Transaction ID</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {dummyHistory.map((entry, index) => (
-              <tr key={entry.id} className="hover:bg-gray-50">
-                <td className="px-4 py-2 border">{index + 1}</td>
-                <td className="px-4 py-2 border">{entry.id}</td>
-                <td className="px-4 py-2 border">{entry.date}</td>
-                <td className="px-4 py-2 border">{entry.amount}</td>
-                <td className="px-4 py-2 border">{entry.method}</td>
-                <td className="px-4 py-2 border">
-                  <span className="text-green-600 font-semibold">
-                    {entry.status}
-                  </span>
+            {payments.map((payment, idx) => (
+              <tr key={payment._id}>
+                <td>{idx + 1}</td>
+                <td>{payment.month}</td>
+                <td>
+                  {payment.block}-{payment.floor}-{payment.apartmentNo}
                 </td>
+                <td>${payment.rent}</td>
+                <td>${payment.discount}</td>
+                <td>${payment.finalAmount}</td>
+                <td className="text-sm break-all">{payment.transactionId}</td>
+                <td>{new Date(payment.date).toLocaleDateString()}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        {payments.length === 0 && (
+          <p className="text-gray-500 mt-4">No payment history found.</p>
+        )}
       </div>
     </div>
   );
