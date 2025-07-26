@@ -12,11 +12,7 @@ const Welcome = () => {
             <p className="text-lg sm:text-xl text-gray-600 max-w-xl">
                 This is your dashboard. Here, you can manage your profile, check announcements, and track your apartment agreement status.
             </p>
-            <img
-                src="https://illustrations.popsy.co/gray/dashboard.svg"
-                alt="Dashboard illustration"
-                className="w-72 sm:w-96 mt-6"
-            />
+          
         </div>
     );
 };
