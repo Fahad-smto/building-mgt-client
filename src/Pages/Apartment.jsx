@@ -4,9 +4,13 @@ import axiosSecure from "../hooks/axios.config";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FaArrowTrendUp } from "react-icons/fa6";
 
+
+// Fetch Apartments
 const fetchApartments = async ({ queryKey }) => {
-  const [_, page, minRent, maxRent] = queryKey;
+  const [_, page, filters] = queryKey;
+  const { minRent, maxRent } = filters;
   const res = await axiosSecure.get(
     `/apartments?page=${page}&limit=6&minRent=${minRent}&maxRent=${maxRent}`
   );
@@ -15,8 +19,15 @@ const fetchApartments = async ({ queryKey }) => {
 
 const Apartment = () => {
   const [page, setPage] = useState(1);
+
+  // Temporary filter input states
+  const [inputMinRent, setInputMinRent] = useState();
+  const [inputMaxRent, setInputMaxRent] = useState();
+
+  // Applied filters that trigger query
   const [minRent, setMinRent] = useState(0);
   const [maxRent, setMaxRent] = useState(10000);
+
   const [appliedApartmentNo, setAppliedApartmentNo] = useState(null);
 
   const { user } = useContext(AuthContext);
@@ -52,7 +63,6 @@ const Apartment = () => {
       apartmentNo: apartment.apartmentNo,
       rent: apartment.rent,
       status: "pending",
-      
     };
 
     try {
@@ -66,9 +76,9 @@ const Apartment = () => {
     }
   };
 
-  // ✅ Fetch apartments
+  // ✅ Fetch apartments (reacts only to `page`, `minRent`, `maxRent`)
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["apartments", page, minRent, maxRent],
+    queryKey: ["apartments", page, { minRent, maxRent }],
     queryFn: fetchApartments,
     keepPreviousData: true,
   });
@@ -87,20 +97,24 @@ const Apartment = () => {
         <input
           type="number"
           placeholder="Min Rent"
-          className="border p-2 rounded"
-          value={minRent}
-          onChange={(e) => setMinRent(Number(e.target.value))}
+          className=" shadow-xl bg-blue-100 p-2 rounded"
+          value={inputMinRent}
+          onChange={(e) => setInputMinRent(Number(e.target.value))}
         />
         <input
           type="number"
           placeholder="Max Rent"
-          className="border p-2 rounded"
-          value={maxRent}
-          onChange={(e) => setMaxRent(Number(e.target.value))}
+          className=" shadow-xl bg-blue-100 p-2 rounded"
+          value={inputMaxRent}
+          onChange={(e) => setInputMaxRent(Number(e.target.value))}
         />
         <button
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={() => setPage(1)}
+          onClick={() => {
+            setMinRent(inputMinRent);
+            setMaxRent(inputMaxRent);
+            setPage(1); // reset to first page after search
+          }}
         >
           Search
         </button>
@@ -112,7 +126,7 @@ const Apartment = () => {
           const isApplied = apt.apartmentNo === appliedApartmentNo;
 
           return (
-            <div key={i} className="border p-4 rounded shadow hover:shadow-lg transition">
+            <div key={i} className="  p-4 rounded shadow hover:shadow-lg transition">
               <img
                 src={apt.image}
                 alt={`Apartment ${apt.apartmentNo}`}
@@ -125,13 +139,13 @@ const Apartment = () => {
               <button
                 onClick={() => handleAgreement(apt)}
                 disabled={isApplied}
-                className={`mt-3 px-4 py-2 rounded text-white ${
-                  isApplied
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-600 hover:bg-green-700"
-                }`}
+                className={`mt-3 px-4 py-2 rounded text-white cursor-pointer flex items-center gap-1.5 ${isApplied
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+                  }`}
               >
                 {isApplied ? "Applied" : "Agreement"}
+                <FaArrowTrendUp></FaArrowTrendUp>
               </button>
             </div>
           );
@@ -141,15 +155,15 @@ const Apartment = () => {
       {/* ⏩ Pagination */}
       <div className="flex justify-center mt-6 gap-2">
         <button
-          className="px-4 py-2 border rounded disabled:opacity-50"
+          className="px-4 py-2  shadow-xl bg-blue-100 rounded disabled:opacity-50"
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
         >
           Prev
         </button>
-        <span className="px-4 py-2 border rounded">{page}</span>
+        <span className="px-4 py-2 shadow-xl bg-blue-100 rounded">{page}</span>
         <button
-          className="px-4 py-2 border rounded disabled:opacity-50"
+          className="px-4 py-2  shadow-xl bg-blue-100 rounded disabled:opacity-50"
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={page === totalPages}
         >

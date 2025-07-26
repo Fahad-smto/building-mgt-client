@@ -1,3 +1,5 @@
+import { FaArrowTrendUp } from "react-icons/fa6";
+
 const Welcome = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row items-center gap-12">
@@ -21,8 +23,9 @@ const Welcome = () => {
           all-in-one Building Management System. Streamline communication and
           keep residents happy with real-time updates and easy access.
         </p>
-        <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-300">
+        <button className="px-6 py-3 flex gap-1.5 items-center bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-300">
           Get Started
+          <FaArrowTrendUp></FaArrowTrendUp>
         </button>
       </div>
     </section>
