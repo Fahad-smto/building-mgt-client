@@ -1,12 +1,54 @@
-# React + Vite
+# 🏢 Building Management Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Building Management System designed to manage apartments, tenants, payments, maintenance requests, and admin controls — all in one modern, responsive web application.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+👉 [Live Site](https://your-live-link.com)  
+👉 [Client Repo](https://github.com/yourusername/building-management-client)  
+👉 [Server Repo](https://github.com/yourusername/building-management-server)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧰 Technologies Used
+
+### 🔹 Client
+- React.js
+- Tailwind CSS + DaisyUI
+- React Router DOM
+- Axios / TanStack Query
+- React Icons
+- Firebase Authentication
+
+### 🔹 Server
+- Express.js
+- MongoDB + Mongoose
+- Stripe (for secure payments)
+- JSON Web Token (JWT)
+- CORS, Dotenv
+
+---
+
+## ✨ Features
+
+- 🔐 User authentication (email/password + Google login)
+- 🧾 Apartment application & agreement system
+- 📦 Member dashboard (My Rooms, My Payments)
+- 💳 Rent payment with Stripe
+- 🏠 Admin panel (Make Admin, Add Room, Manage Users)
+- 📊 Summary Cards with stats (users, rooms, payments)
+- 🔍 Search, sort & filter rooms
+- 🎨 Fully responsive UI with animations
+ 
+
+
+### 🔹 Prerequisites
+
+- Node.js
+- MongoDB account
+- Firebase account
+- Stripe account
+
+ 

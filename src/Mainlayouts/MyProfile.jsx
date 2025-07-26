@@ -29,7 +29,7 @@ const MyProfile = () => {
         {/* Profile Picture */}
         <div className="flex-shrink-0 text-center md:text-left">
           <img
-            src={user?.photoURL || "https://i.ibb.co/2M9Ffyc/default-avatar.png"}
+            src={user?.photoURL || "/user.jpg"}
             alt="User"
             className="w-32 h-32 rounded-full object-cover border-4 border-blue-600"
           />
