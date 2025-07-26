@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaArrowTrendUp } from "react-icons/fa6";
-
+import Loading from "../Components/Loading"
 
 // Fetch Apartments
 const fetchApartments = async ({ queryKey }) => {
@@ -33,7 +33,7 @@ const Apartment = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // ✅ Load existing agreement if user already applied
+  //  Load existing agreement if user already applied
   useEffect(() => {
     const fetchAgreement = async () => {
       if (user?.email) {
@@ -48,7 +48,7 @@ const Apartment = () => {
     fetchAgreement();
   }, [user]);
 
-  // ✅ Handle Agreement Submission
+  //  Handle Agreement Submission
   const handleAgreement = async (apartment) => {
     if (!user) {
       navigate("/login");
@@ -83,7 +83,7 @@ const Apartment = () => {
     keepPreviousData: true,
   });
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
   if (isError) return <p className="text-center text-red-500 mt-10">Error fetching apartments</p>;
 
   const totalPages = Math.ceil(data.total / 6);
