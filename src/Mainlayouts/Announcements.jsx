@@ -6,7 +6,7 @@ const Announcements = () => {
     console.log(announcements);
     useEffect(() => {
          
-        axios.get("http://localhost:5000/announcements")
+        axios.get("https://building-mgt-server.vercel.app/announcements")
             .then(res => setAnnouncements(res.data))
             .catch(err => console.error("Failed to fetch announcements", err));
     }, []);
@@ -14,7 +14,7 @@ const Announcements = () => {
     return (
         <div className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">📢 Announcements</h2>
-
+     
             {announcements.length === 0 ? (
                 <p className="text-center text-gray-500">No announcements available.</p>
             ) : (
