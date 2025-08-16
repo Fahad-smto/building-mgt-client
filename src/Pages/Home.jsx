@@ -1,6 +1,7 @@
 import Banner from "../Components/Banner";
 import FaqSection from "../Components/FaqSection";
 import FeatureHighlights from "../Components/FeatureHighlights";
+import Newsletter from "../Components/Newsletter";
  
 import Welcome from "../Components/Welcome";
 
@@ -13,6 +14,7 @@ const Home = () => {
             <Welcome></Welcome>
             <FeatureHighlights></FeatureHighlights>
             <FaqSection></FaqSection>
+            <Newsletter></Newsletter>
         </div>
     );
 };
