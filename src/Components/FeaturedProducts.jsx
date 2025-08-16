@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
     ];
 
     return (
-        <section className="py-12 px-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-lg max-w-6xl mx-auto mt-12 mb-12">
+        <section className="py-12 px-6 bg-gradient-to-r from-blue-50 to-blue-100   shadow-lg   mx-auto mt-12 mb-12">
             <div className="max-w-6xl mx-auto text-center">
                 <h2 className="text-3xl font-bold text-blue-700 mb-2">
                     🌟 Featured Products

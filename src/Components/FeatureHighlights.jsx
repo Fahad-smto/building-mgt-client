@@ -23,7 +23,7 @@ const FeatureHighlights = () => {
     ];
 
     return (
-        <section className="max-w-6xl mx-auto px-6 py-16 text-center mt-12 mb-12 bg-blue-50 rounded-2xl shadow-lg">
+        <section className="  mx-auto px-6 py-16 text-center mt-12 mb-12 bg-blue-50   shadow-lg">
             <h3 className="text-3xl font-bold mb-12 text-gray-900">
                 Why Choose Our System?
             </h3>

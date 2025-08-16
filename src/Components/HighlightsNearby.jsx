@@ -30,7 +30,7 @@ const nearbyPlaces = [
 
 const HighlightsNearby = () => {
     return (
-        <section className="py-16  bg-blue-50 max-w-6xl mx-auto rounded-2xl shadow-lg mt-20 mb-20">
+        <section className="py-16  bg-blue-50   mx-auto  shadow-lg mt-20 mb-20">
 
             <div className="max-w-6xl mx-auto px-6">
                 {/* Heading */}

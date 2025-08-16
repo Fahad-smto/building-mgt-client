@@ -16,7 +16,7 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="sticky top-0 z-50   bg-white shadow dark:bg-gray-800">
+        <nav className="sticky top-0 z-50  bg-white shadow dark:bg-gray-800">
             <div className="container px-6 py-3 mx-auto md:flex md:items-center md:justify-between">
                 {/* Logo + Mobile toggle */}
                 <div className="flex items-center justify-between">
@@ -27,7 +27,7 @@ const NavBar = () => {
                         </span>
                     </Link>
 
-
+                  
 
 
                     {/* Mobile menu button */}
@@ -86,7 +86,7 @@ const NavBar = () => {
                         </NavLink>
 
                         {/* Search bar */}
-                        <div className="relative mt-3 md:mt-0 md:ml-6 w-full md:w-[200px]">
+                        {/* <div className="relative mt-3 md:mt-0 md:ml-6 w-full md:w-[200px]">
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <svg className="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
                                     <path
@@ -103,7 +103,8 @@ const NavBar = () => {
                                 className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Search"
                             />
-                        </div>
+                        </div> */}
+                        <p className="text-warning" >Dark mode</p>
 
                         {/* Login/Profile Section */}
                         <div className="mt-3 md:mt-0 md:ml-6">
