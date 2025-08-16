@@ -3,7 +3,7 @@ import { FaEnvelopeOpenText } from "react-icons/fa";
 
 const Newsletter = () => {
   return (
-    <section className="bg-gradient-to-r from-blue-300 to-indigo-400 text-white py-16 px-6 rounded-2xl shadow-lg max-w-5xl mx-auto mt-12">
+    <section className="bg-gradient-to-r from-blue-300 to-indigo-400 text-white py-16 px-6 rounded-2xl shadow-lg max-w-4xl mx-auto mt-12 mb-12">
       <motion.div
         className="text-center max-w-2xl mx-auto"
         initial={{ opacity: 0, y: 50 }}
@@ -25,7 +25,7 @@ const Newsletter = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full md:flex-1 px-5 py-3 rounded-xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full md:flex-1 px-5 py-3 rounded-xl text-black  dark:text-black bg-white dark:bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             required
           />
           <motion.button

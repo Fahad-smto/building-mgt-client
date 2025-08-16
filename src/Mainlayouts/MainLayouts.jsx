@@ -6,7 +6,7 @@ import Footer from "../Pages/Footer";
 
 const MainLayouts = () => {
     return (
-        <div className=" mx-auto ">
+        <div className=" mx-auto bg-blue-100 min-h-screen">
 
             <NavBar></NavBar>
 

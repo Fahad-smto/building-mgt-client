@@ -1,6 +1,6 @@
 const FaqSection = () => {
     return (
-        <section className="max-w-3xl mx-auto p-6 mt-16 bg-white rounded-lg shadow-md">
+        <section className="max-w-6xl mx-auto p-6 mt-16 bg-white rounded-lg shadow-md">
             <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Frequently Asked Questions</h2>
 
             <div className="space-y-3">
