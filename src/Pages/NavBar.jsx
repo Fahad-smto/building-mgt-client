@@ -16,7 +16,7 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="relative bg-white shadow dark:bg-gray-800">
+        <nav className="sticky top-0 z-50   bg-white shadow dark:bg-gray-800">
             <div className="container px-6 py-3 mx-auto md:flex md:items-center md:justify-between">
                 {/* Logo + Mobile toggle */}
                 <div className="flex items-center justify-between">
