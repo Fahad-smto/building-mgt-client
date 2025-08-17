@@ -1,34 +1,32 @@
 import { motion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
 
 const FeaturedProducts = () => {
     const products = [
         {
             id: 1,
-            name: "Modern Sofa",
-            price: "$499",
-            image:
-                "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+            title: "Luxury Apartment",
+            description: "Get 20% off on the first month’s rent",
+            image: "/4.jpg",
         },
         {
             id: 2,
-            name: "Smart Watch",
-            price: "$199",
-            image:
-                "https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp",
+            title: "Modern Studio",
+            description: "Special offer: First month just $199",
+            image: "/8.jpg",
         },
         {
             id: 3,
-            name: "Headphones",
-            price: "$99",
-            image:
-                "https://img.daisyui.com/images/stock/photo-1609599962691-40f1a9f4b21d.webp",
+            title: "Family Apartment",
+            description: "Enjoy a discounted rate this month",
+            image: "/3.jpg",
         },
         {
             id: 4,
-            name: "Gaming Chair",
-            price: "$299",
-            image:
-                "https://img.daisyui.com/images/stock/photo-1503602642458-232111445657.webp",
+            title: "Premium Penthouse",
+            description: "Limited-time offer on first month rent",
+            image: "/6.jpg",
         },
     ];
 
@@ -38,8 +36,8 @@ const FeaturedProducts = () => {
                 <h2 className="text-3xl font-bold text-blue-700 mb-2">
                     🌟 Featured Products
                 </h2>
-                <p className="text-gray-600 mb-8">
-                    Discover our handpicked collection of top-selling and trending items.
+                <p className="text-gray-600 mb-8 text-xl">
+                    Enjoy <span className="text-red-500">20%</span> discount on the first month’s rent
                 </p>
 
                 {/* Product Grid */}
@@ -47,7 +45,7 @@ const FeaturedProducts = () => {
                     {products.map((product) => (
                         <motion.div
                             key={product.id}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.03 }}
                             className="card bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition duration-300"
                         >
                             <figure>
@@ -59,17 +57,27 @@ const FeaturedProducts = () => {
                             </figure>
                             <div className="card-body text-center">
                                 <h3 className="text-lg font-semibold text-gray-800">
-                                    {product.name}
+                                    {product.title}
                                 </h3>
-                                <p className="text-blue-600 font-bold">{product.price}</p>
+                                <p className="text-blue-600 font-bold">{product.description}</p>
                                 <div className="card-actions justify-center mt-4">
-                                    <button className="btn bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
-                                        Buy Now
-                                    </button>
+
                                 </div>
                             </div>
                         </motion.div>
                     ))}
+                </div>
+                <div className="mt-8 flex justify-center">
+
+                    <Link
+                        to="/apartment"
+                        className="btn bg-blue-600 text-white rounded hover:bg-blue-700 transition flex items-center gap-2 group"
+                    >
+                        Book Now!
+                        <span className="transform transition-transform duration-300 group-hover:translate-x-1">
+                            <FaArrowRight />
+                        </span>
+                    </Link>
                 </div>
             </div>
         </section>
