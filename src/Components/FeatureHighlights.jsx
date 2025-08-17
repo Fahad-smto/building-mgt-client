@@ -1,4 +1,5 @@
 import { FaShieldAlt, FaUsers, FaCalendarCheck } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const FeatureHighlights = () => {
     const features = [
@@ -23,20 +24,38 @@ const FeatureHighlights = () => {
     ];
 
     return (
-        <section className="  mx-auto px-6 py-16 text-center mt-12 mb-12 bg-blue-50   shadow-lg">
-            <h3 className="text-3xl font-bold mb-12 text-gray-900">
+        <section className="mx-auto px-6 py-16 text-center mt-12 mb-12 bg-blue-50 shadow-lg">
+            <motion.h3
+                className="text-3xl font-bold mb-12 text-gray-900"
+                initial={{ opacity: 0, y: -30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+            >
                 Why Choose Our System?
-            </h3>
+            </motion.h3>
+
             <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
                 {features.map(({ icon, title, description }, idx) => (
-                    <div
+                    <motion.div
                         key={idx}
-                        className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center cursor-pointer"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: idx * 0.2 }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(0,0,0,0.2)" }}
                     >
-                        <div className="mb-4">{icon}</div>
+                        <motion.div
+                            className="mb-4"
+                            whileHover={{ rotate: 10 }}
+                            transition={{ type: "spring", stiffness: 200 }}
+                        >
+                            {icon}
+                        </motion.div>
                         <h4 className="text-xl font-semibold mb-2">{title}</h4>
                         <p className="text-gray-600">{description}</p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>

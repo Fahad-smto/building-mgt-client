@@ -1,5 +1,7 @@
 import { FaSolarPanel, FaSnowflake, FaHome, FaLock } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import { Link } from "react-scroll";
+
 
 const features = [
   {
@@ -42,13 +44,16 @@ const FeatureOverview = () => {
             Non anim in pariatur in ex excepteur commodo do officia amet
             incididunt ullamco nostrud aliquip minim magna esse dolore.
           </p>
-          <button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all flex items-center gap-2 group"
+
+          <Link
+            to="scheduleVisit"
+            smooth={true}
+            duration={600}
+            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all flex items-center gap-2 group"
           >
             <MdLocationOn className="text-xl transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
             Schedule Visit
-          </button>
+          </Link>
         </div>
 
         {/* Right Side */}
