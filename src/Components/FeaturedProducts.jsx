@@ -52,7 +52,7 @@ const FeaturedProducts = () => {
 
     return (
         <section className="py-12 px-6 bg-gradient-to-r from-blue-50 to-blue-100 shadow-lg mx-auto mt-12 mb-12">
-            <div className="max-w-6xl mx-auto text-center">
+            <div className="max-w-6xl mx-auto text-center ">
                 {/* Heading Animation */}
                 <motion.h2
                     className="text-3xl font-bold text-blue-700 mb-2"
@@ -61,7 +61,7 @@ const FeaturedProducts = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    🌟 Featured Products
+                    🌟  GET DISCOUNT
                 </motion.h2>
 
                 <motion.p
@@ -71,7 +71,7 @@ const FeaturedProducts = () => {
                     transition={{ delay: 0.3, duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    Enjoy <span className="text-red-500">20%</span> discount on the first month’s rent
+                    Enjoy <span className="font-urbanist text-red-500">20%</span> discount on the first month’s rent
                 </motion.p>
 
                 {/* Product Grid with Staggered Animations */}

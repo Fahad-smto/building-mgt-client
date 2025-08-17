@@ -49,7 +49,8 @@ const FeatureOverview = () => {
             to="scheduleVisit"
             smooth={true}
             duration={600}
-            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all flex items-center gap-2 group"
+            
+            className="inline-flex cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all   items-center gap-2 group"
           >
             <MdLocationOn className="text-xl transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
             Schedule Visit
