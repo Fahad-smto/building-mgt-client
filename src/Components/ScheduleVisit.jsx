@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const ScheduleVisit = () => {
     const [name, setName] = useState("");
@@ -80,8 +81,9 @@ const ScheduleVisit = () => {
                         <div className="md:col-span-2 text-center">
                             <button
                                 type="submit"
-                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all"
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all flex items-center gap-2"
                             >
+                                <FaRegCalendarAlt className="text-lg" />
                                 Schedule Visit
                             </button>
                         </div>

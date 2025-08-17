@@ -1,4 +1,5 @@
 import { FaSolarPanel, FaSnowflake, FaHome, FaLock } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 
 const features = [
   {
@@ -33,7 +34,7 @@ const FeatureOverview = () => {
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         {/* Left Side */}
         <div className="space-y-6">
-          
+
           <h2 className="text-4xl font-bold text-gray-900">
             Luxury living where <br /> comfort meets timeless style, effortlessly
           </h2>
@@ -41,8 +42,12 @@ const FeatureOverview = () => {
             Non anim in pariatur in ex excepteur commodo do officia amet
             incididunt ullamco nostrud aliquip minim magna esse dolore.
           </p>
-          <button className="bg-blue-600 text-white font-semibold px-6 py-3 rounded hover:bg-blue-700 transition">
-            Schedule a Visit
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all flex items-center gap-2 group"
+          >
+            <MdLocationOn className="text-xl transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
+            Schedule Visit
           </button>
         </div>
 
