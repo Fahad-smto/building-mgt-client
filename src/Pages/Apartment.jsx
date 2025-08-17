@@ -93,27 +93,27 @@ const Apartment = () => {
       <h2 className="text-3xl font-bold mb-6 text-center">Available Apartments</h2>
 
       {/* 🔍 Filter */}
-      <div className="flex gap-4 mb-6 justify-center">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 w-full max-w-md mx-auto sm:max-w-2xl">
         <input
           type="number"
           placeholder="Min Rent"
-          className=" shadow-xl bg-blue-100 p-2 rounded"
+          className="shadow-xl bg-white p-2 rounded flex-1 min-w-0"
           value={inputMinRent}
           onChange={(e) => setInputMinRent(Number(e.target.value))}
         />
         <input
           type="number"
           placeholder="Max Rent"
-          className=" shadow-xl bg-blue-100 p-2 rounded"
+          className="shadow-xl bg-white p-2 rounded flex-1 min-w-0"
           value={inputMaxRent}
           onChange={(e) => setInputMaxRent(Number(e.target.value))}
         />
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full sm:w-auto"
           onClick={() => {
             setMinRent(inputMinRent);
             setMaxRent(inputMaxRent);
-            setPage(1); // reset to first page after search
+            setPage(1);
           }}
         >
           Search
@@ -126,7 +126,7 @@ const Apartment = () => {
           const isApplied = apt.apartmentNo === appliedApartmentNo;
 
           return (
-            <div key={i} className="  p-4 rounded shadow hover:shadow-lg transition">
+            <div key={i} className=" bg-white p-4 rounded shadow hover:shadow-lg transition">
               <img
                 src={apt.image}
                 alt={`Apartment ${apt.apartmentNo}`}
@@ -155,15 +155,15 @@ const Apartment = () => {
       {/* ⏩ Pagination */}
       <div className="flex justify-center mt-6 gap-2">
         <button
-          className="px-4 py-2  shadow-xl bg-blue-100 rounded disabled:opacity-50"
+          className="px-4 py-2  shadow-xl bg-white rounded disabled:opacity-50"
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
         >
           Prev
         </button>
-        <span className="px-4 py-2 shadow-xl bg-blue-100 rounded">{page}</span>
+        <span className="px-4 py-2 shadow-xl bg-white rounded">{page}</span>
         <button
-          className="px-4 py-2  shadow-xl bg-blue-100 rounded disabled:opacity-50"
+          className="px-4 py-2  shadow-xl bg-white rounded disabled:opacity-50"
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={page === totalPages}
         >

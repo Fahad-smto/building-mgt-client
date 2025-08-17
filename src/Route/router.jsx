@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import Forbidden from "../Components/Forbidden";
 import MemberRoute from "./MemberRoute";
 import ErrorPage from "../Components/ErrorPage";
+import TermsPage from "../Components/TermsPage";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path: '/forbidden',
                 element: <Forbidden></Forbidden>
+            },
+            {
+                path: '/terms',
+                element: <TermsPage></TermsPage>
             }
 
         ]
