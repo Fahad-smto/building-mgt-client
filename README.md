@@ -6,9 +6,9 @@ A full-stack Building Management System designed to manage apartments, tenants, 
 
 ## 🚀 Live Demo
 
-👉 [Live Site](https://building-mgt.web.app/)  
-👉 [Client Repo](https://github.com/building-management-client)  
-👉 [Server Repo](https://github.com/building-management-server)
+👉 [Live Link](https://building-mgt.web.app/)  
+👉 [Client Repo](https://github.com/Fahad-smto/building-mgt-client)  
+👉 [Server Repo](https://github.com/Fahad-smto/building-mgt-server)
 
 ---
 
